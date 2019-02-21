@@ -42,6 +42,12 @@ namespace LinkBulb.Web
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddAuthentication().AddInstagram(instagramOptions =>
+            {
+                instagramOptions.ClientId = "235c6a5a6eeb476b8168fd5d7c1aba71";
+                instagramOptions.ClientSecret = "5a8294b250aa490691639ec8a40f4f65";
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

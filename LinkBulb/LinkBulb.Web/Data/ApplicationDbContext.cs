@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using LinkBulb.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,5 +13,7 @@ namespace LinkBulb.Web.Data
             : base(options)
         {
         }
+
+        public DbSet<Link> Links { get; set; }
     }
 }
