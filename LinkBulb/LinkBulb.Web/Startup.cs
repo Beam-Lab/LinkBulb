@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using LinkBulb.Web.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 namespace LinkBulb.Web
 {
@@ -38,6 +40,7 @@ namespace LinkBulb.Web
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -46,6 +49,39 @@ namespace LinkBulb.Web
             {
                 instagramOptions.ClientId = "235c6a5a6eeb476b8168fd5d7c1aba71";
                 instagramOptions.ClientSecret = "5a8294b250aa490691639ec8a40f4f65";
+
+                instagramOptions.Events.OnCreatingTicket = ctx =>
+                {
+                    var id = ctx.User.Value<string>("id");
+                    var username = ctx.User.Value<string>("username");
+                    var profilePicture = ctx.User.Value<string>("profile_picture");
+
+                    /*
+                    var db = ctx.HttpContext.RequestServices.GetRequiredService<ApplicationDbContext>();
+
+                    var user = db.UserLogins.Where(c => c.ProviderKey == id).FirstOrDefault();
+
+                    if (user != null)
+                    {
+                        if (db.UserClaims.Where(c => c.UserId == user.UserId).Count() == 0)
+                        {
+                            var claim = new IdentityUserClaim<string>() { UserId = user.UserId, ClaimType = ClaimTypes.UserData, ClaimValue = username };
+                            var claims = db.UserClaims.Add(claim);
+
+                            claim = new IdentityUserClaim<string>() { UserId = user.UserId, ClaimType = ClaimTypes.Uri, ClaimValue = profilePicture };
+                            claims = db.UserClaims.Add(claim);
+
+                            db.SaveChanges();
+                        }
+                    }
+                    */
+
+                    return Task.CompletedTask;
+                };
+            }).AddTwitter(twitterOptions =>
+            {
+                twitterOptions.ConsumerKey = "vVUAwGLq4gxTq3mKcfUVZHtP7";
+                twitterOptions.ConsumerSecret = "iBiotUZn236PqRe9NpRJA7G5mBve5xoefEPfcVp4qWfvEkyV7t";
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkBulb.Web", "LinkBulb.Web\LinkBulb.Web.csproj", "{6457A8A8-AE98-42F6-9C25-9A6ADBFA2B7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkBulb.Web", "LinkBulb.Web\LinkBulb.Web.csproj", "{6457A8A8-AE98-42F6-9C25-9A6ADBFA2B7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkBulb.Models", "LinkBulb.Models\LinkBulb.Models.csproj", "{6C2B3EC2-0D92-4D63-B623-FB471F0F0D64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkBulb.Models", "LinkBulb.Models\LinkBulb.Models.csproj", "{6C2B3EC2-0D92-4D63-B623-FB471F0F0D64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
