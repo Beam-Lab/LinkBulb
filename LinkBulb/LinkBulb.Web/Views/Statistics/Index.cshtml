@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LinkBulb.Web.ViewModels.StatisticsViewModel>
+
+@{
+    ViewData["Title"] = "Statistics";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Url
+            </th>
+            <th>
+                Clicks Count
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Link.ID">
+                        @Html.DisplayFor(modelItem => item.Link.Title)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Link.Url)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Clicks)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

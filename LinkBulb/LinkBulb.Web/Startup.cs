@@ -56,26 +56,6 @@ namespace LinkBulb.Web
                     var username = ctx.User.Value<string>("username");
                     var profilePicture = ctx.User.Value<string>("profile_picture");
 
-                    /*
-                    var db = ctx.HttpContext.RequestServices.GetRequiredService<ApplicationDbContext>();
-
-                    var user = db.UserLogins.Where(c => c.ProviderKey == id).FirstOrDefault();
-
-                    if (user != null)
-                    {
-                        if (db.UserClaims.Where(c => c.UserId == user.UserId).Count() == 0)
-                        {
-                            var claim = new IdentityUserClaim<string>() { UserId = user.UserId, ClaimType = ClaimTypes.UserData, ClaimValue = username };
-                            var claims = db.UserClaims.Add(claim);
-
-                            claim = new IdentityUserClaim<string>() { UserId = user.UserId, ClaimType = ClaimTypes.Uri, ClaimValue = profilePicture };
-                            claims = db.UserClaims.Add(claim);
-
-                            db.SaveChanges();
-                        }
-                    }
-                    */
-
                     return Task.CompletedTask;
                 };
             }).AddTwitter(twitterOptions =>
@@ -83,6 +63,8 @@ namespace LinkBulb.Web
                 twitterOptions.ConsumerKey = "vVUAwGLq4gxTq3mKcfUVZHtP7";
                 twitterOptions.ConsumerSecret = "iBiotUZn236PqRe9NpRJA7G5mBve5xoefEPfcVp4qWfvEkyV7t";
             });
+
+            services.AddDetection();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

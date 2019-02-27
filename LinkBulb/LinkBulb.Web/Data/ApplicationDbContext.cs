@@ -15,5 +15,7 @@ namespace LinkBulb.Web.Data
         }
 
         public DbSet<Link> Links { get; set; }
+
+        public DbSet<LinkStatistic> LinkStatistics { get; set; }
     }
 }

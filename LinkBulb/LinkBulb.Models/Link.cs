@@ -4,7 +4,6 @@ namespace LinkBulb.Models
 {
     public class Link
     {
-
         public Guid ID { get; set; }
 
         public string Title { get; set; }
