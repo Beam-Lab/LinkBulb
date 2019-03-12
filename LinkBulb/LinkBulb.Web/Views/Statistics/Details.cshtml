@@ -1,0 +1,49 @@
+﻿@model LinkBulb.Web.ViewModels.StatisticsDetailViewModel
+
+@{
+    ViewData["Title"] = "Statistics";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Date
+            </th>
+            <th>
+                Device Type
+            </th>
+            <th>
+                OS
+            </th>
+            <th>
+                Browser
+            </th>
+            <th>
+                Browser Version
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.LinkStatistic)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClickDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Browser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrowserVersion)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

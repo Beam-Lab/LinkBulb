@@ -1,21 +1,42 @@
-﻿@model IEnumerable<LinkBulb.Models.Link>
+﻿@model LinkBulb.Web.ViewModels.LinksPageViewModel
 
 @{
-    ViewData["Title"] = "View";
+    ViewData["Title"] = Model.UserName + " Links";
 }
 
-<div class="row">
+<style>
 
-    @foreach (var item in Model)
-    {
-
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
-                <a href="/l/goto/@item.ID" class="btn btn-primary">Follow the link</a>
-            </div>
-        </div>
-
+    body {
+        background: linear-gradient(to bottom, #4096ee 0%,#60abf8 44%,#7abcff 100%);
     }
 
+    .navbar {
+        display: none;
+    }
+
+    footer {
+        display: none;
+    }
+
+</style>
+
+<div class="row UserName">
+
+    <div class="col-12">
+        <h1 class="text-center">@Model.UserName</h1>
+    </div>
+
 </div>
+@foreach (var item in Model.Links)
+{
+
+    <div class="row">
+
+        <div class="col-12">
+
+            <a class="btn btn-primary btn-lg btnLinkPage" target="_blank" href="/l/goto/@item.ID">@Html.DisplayFor(modelItem => item.Title)</a>
+
+        </div>
+    </div>
+
+}

@@ -11,7 +11,7 @@ namespace LinkBulb.Web.ViewModels
 
         public Link Link { get; set; }
 
-        public LinkStatistic LinkStatistic { get; set; }
+        public List<LinkStatistic> LinkStatistic { get; set; }
 
     }
 }

@@ -42,9 +42,12 @@ namespace LinkBulb.Web.Controllers
 
         public async Task<IActionResult> Details(string id)
         {
-            var viewModel = new List<StatisticsViewModel>();
+            var viewModel = new StatisticsDetailViewModel();
 
+            var statistics = _context.LinkStatistics.Where(l => l.LinkID == Guid.Parse(id)).OrderByDescending(o => o.ClickDate).ToList();
 
+            viewModel.Link = _context.Links.Where(l => l.ID == Guid.Parse(id)).FirstOrDefault();
+            viewModel.LinkStatistic = statistics;
 
             return View(viewModel);
         }

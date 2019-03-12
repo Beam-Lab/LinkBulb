@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LinkBulb.Models;
 using LinkBulb.Web.Data;
+using LinkBulb.Web.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -29,13 +30,18 @@ namespace LinkBulb.Web.Controllers
         [Route("/l/{username}")]
         public async Task<IActionResult> Index(string username)
         {
+            var linksPageViewModel = new LinksPageViewModel();
+            linksPageViewModel.Links = new List<Link>();
+
             var user = await _userManager.FindByNameAsync(username);
+
+            linksPageViewModel.UserName = user.UserName;
 
             var links = await _context.Links.Where(l => l.UserId == Guid.Parse(user.Id)).ToListAsync();
 
-            links = links.Where(l => l.PublishDate < DateTime.Now).ToList();
+            linksPageViewModel.Links = links.Where(l => l.PublishDate < DateTime.Now).ToList();
 
-            return View(links);
+            return View(linksPageViewModel);
         }
 
         [Route("/l/goto/{linkid}")]
