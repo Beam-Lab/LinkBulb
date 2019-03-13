@@ -12,6 +12,8 @@ using Wangkanai.Detection;
 
 namespace LinkBulb.Web.Controllers
 {
+    //TODO - Change TimeZone - http://prideparrot.com/blog/archive/2011/9/how_to_display_dates_and_times_in_clients_timezone
+
     public class LinksController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
